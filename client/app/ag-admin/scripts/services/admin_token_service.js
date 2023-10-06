@@ -15,7 +15,7 @@ angular.module('base')
         if ($cookies.get("token") === null || $cookies.get("token") === undefined) {
             promise = $http({
                     method: 'GET',
-                    url: '/api/v1/oauth/token',
+                    url: 'http://localhost:8080/api/v1/oauth/token',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
@@ -37,7 +37,7 @@ angular.module('base')
             params.sortby = 'asc';
             promiseSettings = $http({
                     method: 'GET',
-                    url: '/api/v1/settings',
+                    url: 'http://localhost:8080/api/v1/settings',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },

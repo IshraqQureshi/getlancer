@@ -8,14 +8,14 @@
  */
 angular.module('getlancerApp')
     .factory('usersLogin', ['$resource', function($resource) {
-        return $resource('/api/v1/users/login', {}, {
+        return $resource('http://localhost:8080/api/v1/users/login', {}, {
             login: {
                 method: 'POST'
             }
         });
     }])
     .factory('twitterLogin', ['$resource', function($resource) {
-        return $resource('/api/v1/users/social_login', {}, {
+        return $resource('http://localhost:8080/api/v1/users/social_login', {}, {
             login: {
                 method: 'POST'
             }

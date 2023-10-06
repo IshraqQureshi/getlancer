@@ -60,7 +60,8 @@ angular.module('getlancerApp', [
     .config(['$authProvider', function($authProvider) {
         var params = {};
         params.fields = 'api_key,slug';
-        $.get('/api/v1/providers', params, function(response) {
+        const serverBaseURL = 'http://localhost:8080';
+        $.get(`${serverBaseURL}/api/v1/providers`, params, function(response) {
             var credentials = {};
             var url = '';
             var providers = response;
@@ -70,7 +71,7 @@ angular.module('getlancerApp', [
                 credentials = {
                     clientId: res.api_key,
                     redirectUri: url + 'redirect.html',
-                    url: url + 'api/v1/users/social_login?type=' + res.slug,
+                    url: serverBaseURL + 'http://localhost:8080/api/v1/users/social_login?type=' + res.slug,
                 };
                 if (res.slug === 'facebook') {
                     $authProvider.facebook(credentials);
@@ -551,7 +552,7 @@ angular.module('getlancerApp', [
         restrict: 'EA',
         replace: true,
         template: '<select class="form-control" ng-options="month.value as month.text for month in months"><option value="">Select Month</option></select>',
-        link: function(scope, e, a) {
+        link: function(scope) {
             scope.months = [];
             scope.months.push({
                 value: 1,
@@ -602,7 +603,7 @@ angular.module('getlancerApp', [
                 text: 'December'
             });
         }
-    }
+    };
 })
   .directive('inputStars', [function () {
     var directive = {

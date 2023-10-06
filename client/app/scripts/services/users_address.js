@@ -8,7 +8,7 @@
  */
 angular.module('getlancerApp')
     .factory('usersAddress', ['$resource', function($resource) {
-        return $resource('/api/v1/users/:user_id/user_addresses/:user_address_id', {}, {
+        return $resource('http://localhost:8080/api/v1/users/:user_id/user_addresses/:user_address_id', {}, {
             remove: {
                 method: 'DELETE',
                 params: {

@@ -8,7 +8,7 @@
  */
 angular.module('getlancerApp')
     .factory('WorkProfile', ['$resource', function($resource) {
-        return $resource('/api/v1/work_profiles/:id', {}, {
+        return $resource('http://localhost:8080/api/v1/work_profiles/:id', {}, {
             getbyId: {
                 method: 'GET',
                 params: {
@@ -36,7 +36,7 @@ angular.module('getlancerApp')
         });
     }])
     .factory('Education', ['$resource', function($resource) {
-        return $resource('/api/v1/educations/:id', {}, {
+        return $resource('http://localhost:8080/api/v1/educations/:id', {}, {
             getbyId: {
                 method: 'GET',
                 params: {
@@ -64,7 +64,7 @@ angular.module('getlancerApp')
         });
     }])
     .factory('Certifications', ['$resource', function($resource) {
-        return $resource('/api/v1/certifications/:id', {}, {
+        return $resource('http://localhost:8080/api/v1/certifications/:id', {}, {
             getbyId: {
                 method: 'GET',
                 params: {
@@ -92,7 +92,7 @@ angular.module('getlancerApp')
         });
     }])
     .factory('Publications', ['$resource', function($resource) {
-        return $resource('/api/v1/publications/:id', {}, {
+        return $resource('http://localhost:8080/api/v1/publications/:id', {}, {
             getbyId: {
                 method: 'GET',
                 params: {
@@ -120,7 +120,7 @@ angular.module('getlancerApp')
         });
     }])
     .factory('UserProfile', ['$resource', function($resource) {
-        return $resource('/api/v1/users/:id', {}, {
+        return $resource('http://localhost:8080/api/v1/users/:id', {}, {
             getbyId: {
                 method: 'GET',
                 params: {
@@ -148,42 +148,42 @@ angular.module('getlancerApp')
         });
     }])
     .factory('Countries', ['$resource', function($resource) {
-        return $resource('/api/v1/countries', {}, {
+        return $resource('http://localhost:8080/api/v1/countries', {}, {
             getall: {
                 method: 'GET'
             }
         });
     }])
     .factory('Skills', ['$resource', function($resource) {
-        return $resource('/api/v1/skills', {}, {
+        return $resource('http://localhost:8080/api/v1/skills', {}, {
             getall: {
                 method: 'GET'
             }
         });
     }])
     .factory('ActiveProjects', ['$resource', function($resource) {
-        return $resource('/api/v1/users/:id/active_projects', {}, {
+        return $resource('http://localhost:8080/api/v1/users/:id/active_projects', {}, {
             getall: {
                 method: 'GET'
             }
         });
     }])
     .factory('HireMe', ['$resource', function($resource) {
-        return $resource('/api/v1/hire_requests', {}, {
+        return $resource('http://localhost:8080/api/v1/hire_requests', {}, {
             create: {
                 method: 'Post'
             }
         });
     }])
     .factory('ExamUsers', ['$resource', function($resource) {
-        return $resource('/api/v1/exams_users', {}, {
+        return $resource('http://localhost:8080/api/v1/exams_users', {}, {
             getall: {
                 method: 'GET'
             }
         });
     }])
     .factory('FreelancerStats', ['$resource', function($resource) {
-        return $resource('/api/v1/bids/:user_id/project_stats', {}, {
+        return $resource('http://localhost:8080/api/v1/bids/:user_id/project_stats', {}, {
             get: {
                 method: 'GET',
                 params: {
@@ -193,7 +193,7 @@ angular.module('getlancerApp')
         });
     }])
     .factory('EmployerStats', ['$resource', function($resource) {
-        return $resource('/api/v1/projects/:user_id/project_stats', {}, {
+        return $resource('http://localhost:8080/api/v1/projects/:user_id/project_stats', {}, {
             get: {
                 method: 'GET',
                
@@ -201,21 +201,21 @@ angular.module('getlancerApp')
         });
     }])
     .factory('FreelancerReview', ['$resource', function($resource) {
-        return $resource('/api/v1/reviews/', {}, {
+        return $resource('http://localhost:8080/api/v1/reviews/', {}, {
             getall: {
                 method: 'GET',
             },
         });
     }])
     .factory('EmployerReview', ['$resource', function($resource) {
-        return $resource('/api/v1/reviews/', {}, {
+        return $resource('http://localhost:8080/api/v1/reviews/', {}, {
             getall: {
                 method: 'GET',
             },
         });
     }])
       .factory('FollowersFactory', ['$resource', function($resource) {
-          return $resource('/api/v1/followers', {}, {
+          return $resource('http://localhost:8080/api/v1/followers', {}, {
               get: {
                   method: 'GET'
               },
@@ -225,7 +225,7 @@ angular.module('getlancerApp')
           });
  }])
       .factory('UnfollowFactory', ['$resource', function($resource) {
-          return $resource('/api/v1/followers/:followerId', {}, {
+          return $resource('http://localhost:8080/api/v1/followers/:followerId', {}, {
               remove: {
                   method: 'DELETE',
                   params: {
@@ -237,14 +237,14 @@ angular.module('getlancerApp')
     }])
     
     .factory('FlagsFactory', ['$resource', function($resource) {
-        return $resource('/api/v1/flags', {}, {
+        return $resource('http://localhost:8080/api/v1/flags', {}, {
             create: {
                 method: 'POST'
             }
         });
     }])
             .factory('FlagCategoriesFactory', ['$resource', function($resource) {
-          return $resource('/api/v1/flag_categories', {}, {
+          return $resource('http://localhost:8080/api/v1/flag_categories', {}, {
               get: {
                   method: 'GET'
               }

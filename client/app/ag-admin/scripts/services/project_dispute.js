@@ -8,14 +8,14 @@
  */
 angular.module('base')
     .factory('DisputeStatus', ['$resource', function($resource) {
-        return $resource('/api/v1/bids/:id/dispute_open_types', {}, {
+        return $resource('http://localhost:8080/api/v1/bids/:id/dispute_open_types', {}, {
             get: {
                 method: 'GET'
             }
         });
   }])
     .factory('ProjectDispute', function($resource) {
-        return $resource('/api/v1/project_disputes/:id', {}, {
+        return $resource('http://localhost:8080/api/v1/project_disputes/:id', {}, {
             get: {
                 method: 'GET'
             },
@@ -28,7 +28,7 @@ angular.module('base')
         })
     })
       .factory('DisputeClosedTypes', function($resource) {
-        return $resource('/api/v1/dispute_closed_types', {} ,{
+        return $resource('http://localhost:8080/api/v1/dispute_closed_types', {} ,{
             get: {
                 method: 'GET'
             }

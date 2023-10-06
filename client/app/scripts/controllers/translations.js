@@ -9,7 +9,7 @@
 angular.module('getlancerApp')
     .service('languageList', function() {
         /*jshint -W117 */
-        var promise = $.get('/api/v1/settings/site_languages', function() {});
+        var promise = $.get('http://localhost:8080/api/v1/settings/site_languages', function() {});
         return {
             promise: promise
         };

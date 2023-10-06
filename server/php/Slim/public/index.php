@@ -12,14 +12,25 @@
  * @license    http://www.agriya.com/ Agriya Infoway Licence
  * @link       http://www.agriya.com
  */
-require_once '../lib/bootstrap.php';
+
+ require_once __DIR__  . '/../lib/bootstrap.php';
+
 /**
  * GET oauthGet
  * Summary: Get site token
  * Notes: oauth
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/oauth/token', function ($request, $response, $args) {
+
+ header('Access-Control-Allow-Origin: *');
+
+
+$app->get('/api/test', function($request, $response, $args){
+    var_dump('test');
+
+});
+
+$app->get('/api/v1/oauth/token', function ($request, $response, $args) {
     $post_val = array(
         'grant_type' => 'client_credentials',
         'client_id' => OAUTH_CLIENT_ID,
@@ -34,7 +45,7 @@ $app->GET('/api/v1/oauth/token', function ($request, $response, $args) {
  * Notes: oauth
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/oauth/refresh_token', function ($request, $response, $args) {
+$app->get('/api/v1/oauth/refresh_token', function ($request, $response, $args) {
     $post_val = array(
         'grant_type' => 'refresh_token',
         'refresh_token' => $_GET['token'],
@@ -328,7 +339,7 @@ $app->POST('/api/v1/users/login', function ($request, $response, $args) {
  * Notes: Social Login for twitter
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/users/social_login', function ($request, $response, $args) {
+$app->get('/api/v1/users/social_login', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     if (!empty($queryParams['type'])) {
         $response = social_auth_login($queryParams['type']);
@@ -470,7 +481,7 @@ $app->POST('/api/v1/users/change_password', function ($request, $response, $args
  * Notes: oauth
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/users/logout', function ($request, $response, $args) {
+$app->get('/api/v1/users/logout', function ($request, $response, $args) {
     if (!empty($_GET['token'])) {
         try {
             $oauth = Models\OauthAccessToken::where('access_token', $_GET['token'])->delete();
@@ -489,7 +500,7 @@ $app->GET('/api/v1/users/logout', function ($request, $response, $args) {
  * Notes: Filter users.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/users', function ($request, $response, $args) {
+$app->get('/api/v1/users', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     global $authUser;
     $result = array();
@@ -675,7 +686,7 @@ $app->POST('/api/v1/users', function ($request, $response, $args) {
  * Notes: Get particular user details
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/users/{userId}', function ($request, $response, $args) {
+$app->get('/api/v1/users/{userId}', function ($request, $response, $args) {
     global $authUser;
     $result = array();
     $enabledIncludes = array(
@@ -729,7 +740,7 @@ $app->GET('/api/v1/users/{userId}', function ($request, $response, $args) {
  * Notes: Get particular user details
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/me', function ($request, $response, $args) {
+$app->get('/api/v1/me', function ($request, $response, $args) {
     global $authUser;
     $result = array();
     $enabledIncludes = array(
@@ -917,7 +928,7 @@ $app->DELETE('/api/v1/users/{userId}', function ($request, $response, $args) {
  * Notes: all providers lists
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/providers', function ($request, $response, $args) {
+$app->get('/api/v1/providers', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $result = array();
     try {
@@ -943,7 +954,7 @@ $app->GET('/api/v1/providers', function ($request, $response, $args) {
  * Notes: GEt particular provider details.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/providers/{providerId}', function ($request, $response, $args) {
+$app->get('/api/v1/providers/{providerId}', function ($request, $response, $args) {
     $result = array();
     $provider = Models\Provider::find($request->getAttribute('providerId'));
     if (!empty($provider)) {
@@ -983,7 +994,7 @@ $app->PUT('/api/v1/providers/{providerId}', function ($request, $response, $args
  * Notes: all FormField lists
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/form_fields', function ($request, $response, $args) {
+$app->get('/api/v1/form_fields', function ($request, $response, $args) {
     global $authUser;
     $queryParams = $request->getQueryParams();
     $result = array();
@@ -1079,7 +1090,7 @@ $app->DELETE('/api/v1/form_fields/{FormFieldId}', function ($request, $response,
  * Notes: Returns a QuoteFormField from the system
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/form_fields/{FormFieldId}', function ($request, $response, $args) {
+$app->get('/api/v1/form_fields/{FormFieldId}', function ($request, $response, $args) {
     $enabledIncludes = array(
         'input_types'
     );
@@ -1183,7 +1194,7 @@ $app->PUT('/api/v1/form_field_groups/{FormFieldGroupId}', function ($request, $r
  * Notes: Returns all input types from the system
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/input_types', function ($request, $response, $args) {
+$app->get('/api/v1/input_types', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $results = array();
     try {
@@ -1271,7 +1282,7 @@ $app->POST('/api/v1/order', function ($request, $response, $args) {
  * Notes: Returns all work profiles from the system
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/work_profiles', function ($request, $response, $args) {
+$app->get('/api/v1/work_profiles', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $results = array();
     try {
@@ -1339,7 +1350,7 @@ $app->DELETE('/api/v1/work_profiles/{workProfileId}', function ($request, $respo
  * Notes: Returns a work profile based on a single ID
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/work_profiles/{workProfileId}', function ($request, $response, $args) {
+$app->get('/api/v1/work_profiles/{workProfileId}', function ($request, $response, $args) {
     $result = array();
     $enabledIncludes = array(
         'user'
@@ -1384,7 +1395,7 @@ $app->PUT('/api/v1/work_profiles/{workProfileId}', function ($request, $response
  * Notes: Returns all publications from the system
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/publications', function ($request, $response, $args) {
+$app->get('/api/v1/publications', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $results = array();
     try {
@@ -1452,7 +1463,7 @@ $app->DELETE('/api/v1/publications/{publicationId}', function ($request, $respon
  * Notes: Returns a publication based on a single ID
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/publications/{publicationId}', function ($request, $response, $args) {
+$app->get('/api/v1/publications/{publicationId}', function ($request, $response, $args) {
     $result = array();
     $enabledIncludes = array(
         'user'
@@ -1497,7 +1508,7 @@ $app->PUT('/api/v1/publications/{publicationId}', function ($request, $response,
  * Notes: Get roles lists
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/roles', function ($request, $response, $args) {
+$app->get('/api/v1/roles', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $result = array();
     try {
@@ -1523,7 +1534,7 @@ $app->GET('/api/v1/roles', function ($request, $response, $args) {
  * Notes: Get paticular email templates
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/roles/{roleId}', function ($request, $response, $args) {
+$app->get('/api/v1/roles/{roleId}', function ($request, $response, $args) {
     $result = array();
     $role = Models\Role::find($request->getAttribute('roleId'));
     if (!empty($role)) {
@@ -1539,7 +1550,7 @@ $app->GET('/api/v1/roles/{roleId}', function ($request, $response, $args) {
  * Notes: Get contact lists
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/contacts', function ($request, $response, $args) {
+$app->get('/api/v1/contacts', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $result = array();
     try {
@@ -1608,7 +1619,7 @@ $app->POST('/api/v1/contacts', function ($request, $response, $args) {
  * Notes: get particular contact details
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/contacts/{contactId}', function ($request, $response, $args) {
+$app->get('/api/v1/contacts/{contactId}', function ($request, $response, $args) {
     $result = array();
     $enabledIncludes = array(
         'ip'
@@ -1650,7 +1661,7 @@ $app->DELETE('/api/v1/contacts/{contactId}', function ($request, $response, $arg
  * Notes: Get all transactions list.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/transactions', function ($request, $response, $args) {
+$app->get('/api/v1/transactions', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $result = array();
     try {
@@ -1726,7 +1737,7 @@ $app->GET('/api/v1/transactions', function ($request, $response, $args) {
  * Notes: Get user transactions list.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/users/{userId}/transactions', function ($request, $response, $args) {
+$app->get('/api/v1/users/{userId}/transactions', function ($request, $response, $args) {
     global $authUser;
     $queryParams = $request->getQueryParams();
     $result = array();
@@ -1809,7 +1820,7 @@ $app->GET('/api/v1/users/{userId}/transactions', function ($request, $response, 
  * Notes: Filter payment gateway.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/payment_gateways', function ($request, $response, $args) {
+$app->get('/api/v1/payment_gateways', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $result = array();
     try {
@@ -1835,7 +1846,7 @@ $app->GET('/api/v1/payment_gateways', function ($request, $response, $args) {
  * Notes: Paymentgateways list.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/payment_gateways/list', function ($request, $response, $args) {
+$app->get('/api/v1/payment_gateways/list', function ($request, $response, $args) {
     $args = $request->getParsedBody();
     $data = array();
     try {
@@ -1864,7 +1875,7 @@ $app->GET('/api/v1/payment_gateways/list', function ($request, $response, $args)
  * Notes: Filter payment gateway.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/payment_gateways/{paymentGatewayId}', function ($request, $response, $args) {
+$app->get('/api/v1/payment_gateways/{paymentGatewayId}', function ($request, $response, $args) {
     $result = array();
     $enabledIncludes = array(
         'payment_settings'
@@ -1947,7 +1958,7 @@ $app->PUT('/api/v1/payment_gateways/{paymentGatewayId}', function ($request, $re
  * Notes: Filter pages.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/pages', function ($request, $response, $args) {
+$app->get('/api/v1/pages', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $result = array();
     try {
@@ -1997,7 +2008,7 @@ $app->POST('/api/v1/pages', function ($request, $response, $args) {
  * Notes: Get page.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/pages/{pageId}', function ($request, $response, $args) {
+$app->get('/api/v1/pages/{pageId}', function ($request, $response, $args) {
     $result = array();
     $queryParams = $request->getQueryParams();
     try {
@@ -2073,7 +2084,7 @@ $app->DELETE('/api/v1/pages/{pageId}', function ($request, $response, $args) {
  * Notes: Filter Setting categories.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/setting_categories', function ($request, $response, $args) {
+$app->get('/api/v1/setting_categories', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $result = array();
     try {
@@ -2130,7 +2141,7 @@ $app->GET('/api/v1/setting_categories', function ($request, $response, $args) {
  * Notes: GEt setting categories.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/setting_categories/{settingCategoryId}', function ($request, $response, $args) {
+$app->get('/api/v1/setting_categories/{settingCategoryId}', function ($request, $response, $args) {
     $result = array();
     $settingCategory = Models\SettingCategory::find($request->getAttribute('settingCategoryId'));
     if (!empty($settingCategory)) {
@@ -2146,7 +2157,7 @@ $app->GET('/api/v1/setting_categories/{settingCategoryId}', function ($request, 
  * Notes: GEt setting categories.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/settings/site_languages', function ($request, $response, $args) {
+$app->get('/api/v1/settings/site_languages', function ($request, $response, $args) {
     $result = array();    
     $setting = Models\Setting::where('name','=','SITE_AVAILABLE_LANGUAGES')->first();   
     if (!empty($setting)) {
@@ -2172,7 +2183,7 @@ $app->GET('/api/v1/settings/site_languages', function ($request, $response, $arg
  * Notes: GEt settings.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/settings', function ($request, $response, $args) {
+$app->get('/api/v1/settings', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $result = array();
     try {
@@ -2277,7 +2288,7 @@ $app->GET('/api/v1/settings', function ($request, $response, $args) {
  * Notes: Get setting.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/settings/{settingId}', function ($request, $response, $args) {
+$app->get('/api/v1/settings/{settingId}', function ($request, $response, $args) {
     $result = array();
     $enabledIncludes = array(
         'setting_category'
@@ -2355,7 +2366,7 @@ $app->PUT('/api/v1/settings/{settingId}', function ($request, $response, $args) 
  * Notes: Get email templates lists
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/email_templates', function ($request, $response, $args) {
+$app->get('/api/v1/email_templates', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $result = array();
     try {
@@ -2486,7 +2497,7 @@ $app->GET('/api/v1/email_templates', function ($request, $response, $args) {
  * Notes: Get paticular email templates
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/email_templates/{emailTemplateId}', function ($request, $response, $args) {
+$app->get('/api/v1/email_templates/{emailTemplateId}', function ($request, $response, $args) {
     $result = array();
     $emailTemplate = Models\EmailTemplate::find($request->getAttribute('emailTemplateId'));
     if (!empty($emailTemplate)) {
@@ -2526,7 +2537,7 @@ $app->PUT('/api/v1/email_templates/{emailTemplateId}', function ($request, $resp
  * Notes: Returns all activities from the system
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/activities', function ($request, $response, $args) {
+$app->get('/api/v1/activities', function ($request, $response, $args) {
     global $authUser;
     $queryParams = $request->getQueryParams();
     $results = array();
@@ -2574,7 +2585,7 @@ $app->GET('/api/v1/activities', function ($request, $response, $args) {
  * Notes: Returns all activities from the system
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/me/activities', function ($request, $response, $args) {
+$app->get('/api/v1/me/activities', function ($request, $response, $args) {
     global $authUser;
     $queryParams = $request->getQueryParams();
     $results = array();
@@ -2749,7 +2760,7 @@ $app->GET('/api/v1/me/activities', function ($request, $response, $args) {
  * Notes: Returns all salary types from the system
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/salary_types', function ($request, $response, $args) {
+$app->get('/api/v1/salary_types', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $results = array();
     try {
@@ -2816,7 +2827,7 @@ $app->DELETE('/api/v1/salary_types/{salaryTypeId}', function ($request, $respons
  * Notes: Returns a salary type based on a single ID
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/salary_types/{salaryTypeId}', function ($request, $response, $args) {
+$app->get('/api/v1/salary_types/{salaryTypeId}', function ($request, $response, $args) {
     $result = array();
     $salaryType = Models\SalaryType::find($request->getAttribute('salaryTypeId'))->first();
     if (!empty($salaryType)) {
@@ -2880,7 +2891,7 @@ $app->POST('/api/v1/skills', function ($request, $response, $args) {
  * Notes: Returns a Skill from the system
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/skills/{skillId}', function ($request, $response, $args) {
+$app->get('/api/v1/skills/{skillId}', function ($request, $response, $args) {
     $result = array();
     try {
         $skill = Models\Skill::find($request->getAttribute('skillId'));
@@ -2900,7 +2911,7 @@ $app->GET('/api/v1/skills/{skillId}', function ($request, $response, $args) {
  * Notes: Returns all Skill from the system
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/skills', function ($request, $response, $args) {
+$app->get('/api/v1/skills', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $count = PAGE_LIMIT;
     if (!empty($queryParams['limit'])) {
@@ -3024,7 +3035,7 @@ $app->PUT('/api/v1/skills/{skillId}', function ($request, $response, $args) {
  * Notes: Returns all views from the system
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/views', function ($request, $response, $args) {
+$app->get('/api/v1/views', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $results = array();
     try {
@@ -3105,7 +3116,7 @@ $app->DELETE('/api/v1/views/{viewId}', function ($request, $response, $args) {
  * Notes: Returns a view from the system
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/views/{viewId}', function ($request, $response, $args) {
+$app->get('/api/v1/views/{viewId}', function ($request, $response, $args) {
     global $authUser;
     $result = array();
     $enabledIncludes = array(
@@ -3127,7 +3138,7 @@ $app->GET('/api/v1/views/{viewId}', function ($request, $response, $args) {
  * Notes: Returns all user logins from the system
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/user_logins', function ($request, $response, $args) {
+$app->get('/api/v1/user_logins', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $results = array();
     try {
@@ -3179,7 +3190,7 @@ $app->DELETE('/api/v1/user_logins/{userLoginId}', function ($request, $response,
  * Notes: Get  particular userLogin
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/user_logins/{userLoginId}', function ($request, $response, $args) {
+$app->get('/api/v1/user_logins/{userLoginId}', function ($request, $response, $args) {
     $result = array();
     $enabledIncludes = array(
         'user',
@@ -3199,7 +3210,7 @@ $app->GET('/api/v1/user_logins/{userLoginId}', function ($request, $response, $a
  * Notes: Filter cities.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/cities', function ($request, $response, $args) {
+$app->get('/api/v1/cities', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $result = array();
     try {
@@ -3261,7 +3272,7 @@ $app->POST('/api/v1/cities', function ($request, $response, $args) {
  * Notes: Get  particular city
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/cities/{cityId}', function ($request, $response, $args) {
+$app->get('/api/v1/cities/{cityId}', function ($request, $response, $args) {
     $result = array();
     $enabledIncludes = array(
         'country',
@@ -3325,7 +3336,7 @@ $app->DELETE('/api/v1/cities/{cityId}', function ($request, $response, $args) {
  * Notes: Filter states.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/states', function ($request, $response, $args) {
+$app->get('/api/v1/states', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $result = array();
     try {
@@ -3383,7 +3394,7 @@ $app->POST('/api/v1/states', function ($request, $response, $args) {
  * Notes: Get  particular state
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/states/{stateId}', function ($request, $response, $args) {
+$app->get('/api/v1/states/{stateId}', function ($request, $response, $args) {
     $result = array();
     $enabledIncludes = array(
         'country'
@@ -3449,7 +3460,7 @@ $app->DELETE('/api/v1/states/{stateId}', function ($request, $response, $args) {
  * Notes: Filter countries.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/countries', function ($request, $response, $args) use ($app) {
+$app->get('/api/v1/countries', function ($request, $response, $args) use ($app) {
     $queryParams = $request->getQueryParams();
     $result = array();
     try {
@@ -3502,7 +3513,7 @@ $app->POST('/api/v1/countries', function ($request, $response, $args) {
  * Notes: Get countries.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/countries/{countryId}', function ($request, $response, $args) {
+$app->get('/api/v1/countries/{countryId}', function ($request, $response, $args) {
     $result = array();
     $country = Models\Country::find($request->getAttribute('countryId'));
     if (!empty($country)) {
@@ -3565,7 +3576,7 @@ $app->DELETE('/api/v1/countries/{countryId}', function ($request, $response, $ar
  * Notes: Filter language.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/languages', function ($request, $response, $args) {
+$app->get('/api/v1/languages', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $result = array();
     try {
@@ -3621,7 +3632,7 @@ $app->POST('/api/v1/languages', function ($request, $response, $args) {
  * Notes: Get particular language.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/languages/{languageId}', function ($request, $response, $args) {
+$app->get('/api/v1/languages/{languageId}', function ($request, $response, $args) {
     $result = array();
     $language = Models\Language::find($request->getAttribute('languageId'));
     if (!empty($language)) {
@@ -3684,7 +3695,7 @@ $app->DELETE('/api/v1/languages/{languageId}', function ($request, $response, $a
  * Notes: Get site stats lists
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/stats', function ($request, $response, $args) {
+$app->get('/api/v1/stats', function ($request, $response, $args) {
     global $authUser;
     $result = array();
     $result = Models\QuoteService::stats();
@@ -3774,7 +3785,7 @@ $app->POST('/api/v1/attachments', function ($request, $response, $args) {
  * Notes: Returns all plugins from the system
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/plugins', function ($request, $response, $args) {
+$app->get('/api/v1/plugins', function ($request, $response, $args) {
     global $authUser;
     $result = array();
     $path = APP_PATH . DIRECTORY_SEPARATOR . 'client' . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'scripts' . DIRECTORY_SEPARATOR . 'plugins';
@@ -3965,7 +3976,7 @@ $app->PUT('/api/v1/plugins', function ($request, $response, $args) {
         return renderWithJson($result, 'Invalid request.', '', 1);
     }
 })->add(new ACL('canUpdatePlugin'));
-$app->GET('/api/v1/admin-config', function ($request, $response, $args) {
+$app->get('/api/v1/admin-config', function ($request, $response, $args) {
     $plugins = explode(',', SITE_ENABLED_PLUGINS);
     $compiledMenus = $compiledTables = $mainJson = '';
     $file = __DIR__ . '/admin-config.php';
@@ -4123,7 +4134,7 @@ $app->DELETE('/api/v1/certifications/{certificationId}', function ($request, $re
  * Notes: Returns a certification based on a single ID
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/certifications/{certificationId}', function ($request, $response, $args) {
+$app->get('/api/v1/certifications/{certificationId}', function ($request, $response, $args) {
     $result = array();
     $enabledIncludes = array(
         'user'
@@ -4168,7 +4179,7 @@ $app->PUT('/api/v1/certifications/{certificationId}', function ($request, $respo
  * Notes: Returns all certifications from the system
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/certifications', function ($request, $response, $args) {
+$app->get('/api/v1/certifications', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $results = array();
     try {
@@ -4236,7 +4247,7 @@ $app->DELETE('/api/v1/educations/{educationId}', function ($request, $response, 
  * Notes: Returns a education based on a single ID
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/educations/{educationId}', function ($request, $response, $args) {
+$app->get('/api/v1/educations/{educationId}', function ($request, $response, $args) {
     $result = array();
     $enabledIncludes = array(
         'user',
@@ -4282,7 +4293,7 @@ $app->PUT('/api/v1/educations/{educationId}', function ($request, $response, $ar
  * Notes: Returns all educations from the system
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/educations', function ($request, $response, $args) {
+$app->get('/api/v1/educations', function ($request, $response, $args) {
     $queryParams = $request->getQueryParams();
     $results = array();
     try {
@@ -4337,7 +4348,7 @@ $app->POST('/api/v1/educations', function ($request, $response, $args) {
  * Notes: Returns all ips from the system
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/ips', function ($request, $response, $args) {
+$app->get('/api/v1/ips', function ($request, $response, $args) {
     global $authUser;
     $queryParams = $request->getQueryParams();
     $results = array();
@@ -4394,7 +4405,7 @@ $app->DELETE('/api/v1/ips/{ipId}', function ($request, $response, $args) {
  * Notes: Returns a ip based on a single ID
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/ips/{ipId}', function ($request, $response, $args) {
+$app->get('/api/v1/ips/{ipId}', function ($request, $response, $args) {
     global $authUser;
     $result = array();
     $enabledIncludes = array(
@@ -4417,7 +4428,7 @@ $app->GET('/api/v1/ips/{ipId}', function ($request, $response, $args) {
  * Notes: Filter translations.
  * Output-Formats: [application/json]
  */
-$app->GET('/api/v1/translations', function ($request, $response, $args) use ($app)
+$app->get('/api/v1/translations', function ($request, $response, $args) use ($app)
 {
     $result = array();
     try {

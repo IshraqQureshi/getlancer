@@ -8,7 +8,7 @@
  */
 angular.module('getlancerApp')
     .factory('TransactionsFactory', ['$resource', function($resource) {
-        return $resource('/api/v1/users/:id/transactions?&type=:type&from_date=:from&to_date=:to', {}, {
+        return $resource('http://localhost:8080/api/v1/users/:id/transactions?&type=:type&from_date=:from&to_date=:to', {}, {
             get: {
                 method: 'GET',
 				params: {

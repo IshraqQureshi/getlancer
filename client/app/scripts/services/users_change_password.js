@@ -8,7 +8,7 @@
  */
 angular.module('getlancerApp')
     .factory('usersChangePassword', ['$resource', function($resource) {
-        return $resource('/api/v1/users/:id/change_password', {}, {
+        return $resource('http://localhost:8080/api/v1/users/:id/change_password', {}, {
             changePassword: {
                 method: 'PUT',
                 params: {

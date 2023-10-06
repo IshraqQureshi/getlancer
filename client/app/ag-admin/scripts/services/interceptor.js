@@ -117,7 +117,7 @@ angular.module('base')
                 return $q.reject(response);
             },
             request: function(config) {
-                var exceptional_array = ['/api/v1/stats', '/api/v1/settings', '/api/v1/users/logout', '/api/v1/oauth/refresh_token'];
+                var exceptional_array = ['http://localhost:8080/api/v1/stats', 'http://localhost:8080/api/v1/settings', 'http://localhost:8080/api/v1/users/logout', 'http://localhost:8080/api/v1/oauth/refresh_token'];
                 if ($cookies.get('auth') !== null && $cookies.get('auth') !== undefined) {
                     var auth = angular.fromJson($cookies.get('auth'));
                 }

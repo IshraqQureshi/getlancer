@@ -8,7 +8,7 @@
  */
 angular.module('getlancerApp.Bidding.Milestone')
     .factory('Milestone', ['$resource', function($resource) {
-        return $resource('/api/v1/milestones/:id', {
+        return $resource('http://localhost:8080/api/v1/milestones/:id', {
             id: '@id'
         }, {
             put: {
@@ -23,7 +23,7 @@ angular.module('getlancerApp.Bidding.Milestone')
         });
   }])
     .factory('BidMilestone', ['$resource', function($resource) {
-        return $resource('/api/v1/milestones', {}, {
+        return $resource('http://localhost:8080/api/v1/milestones', {}, {
             get: {
                 method: 'GET'
             },
@@ -33,21 +33,21 @@ angular.module('getlancerApp.Bidding.Milestone')
         });
   }])
     .factory('MeMilestone', ['$resource', function($resource) {
-        return $resource('/api/v1/me/milestones', {}, {
+        return $resource('http://localhost:8080/api/v1/me/milestones', {}, {
             get: {
                 method: 'GET'
             }
         });
   }])
     .factory('MilestoneStatus', ['$resource', function($resource) {
-        return $resource('/api/v1/milestone_statuses', {}, {
+        return $resource('http://localhost:8080/api/v1/milestone_statuses', {}, {
             get: {
                 method: 'GET'
             }
         });
   }])
   .factory('GetMilestoneStatus', ['$resource', function($resource) {
-        return $resource('/api/v1/milestone_statuses', {}, {
+        return $resource('http://localhost:8080/api/v1/milestone_statuses', {}, {
             get: {
                 method: 'GET'
             }

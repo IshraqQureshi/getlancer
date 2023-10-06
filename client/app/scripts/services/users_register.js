@@ -8,7 +8,7 @@
  */
 angular.module('getlancerApp')
     .factory('usersRegister', ['$resource', function($resource) {
-        return $resource('/api/v1/users/register', {}, {
+        return $resource('http://localhost:8080/api/v1/users/register', {}, {
             create: {
                 method: 'POST'
             }

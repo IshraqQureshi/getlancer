@@ -12,7 +12,7 @@
  * @license    http://www.agriya.com/ Agriya Infoway Licence
  * @link       http://www.agriya.com
  */
-define('R_DEBUG', false);
+define('R_DEBUG', true);
 ini_set('display_errors', R_DEBUG);
 define('R_API_VERSION', 1);
 define('DS', DIRECTORY_SEPARATOR);
@@ -35,9 +35,9 @@ if (ini_get('date.timezone')) {
 date_default_timezone_set($default_timezone);
 define('R_DB_DRIVER', 'pgsql');
 define('R_DB_HOST', 'localhost');
-define('R_DB_NAME', 'ENTER_YOUR_DB_NAME');
-define('R_DB_USER', 'ENTER_YOUR_DB_USERNAME');
-define('R_DB_PASSWORD', 'ENTER_YOUR_DB_PASSWORD');
+define('R_DB_NAME', 'legal_tech_bidding');
+define('R_DB_USER', 'postgres');
+define('R_DB_PASSWORD', 'admin123');
 define('R_DB_PORT', 5432);
 define('SECURITY_SALT', 'e9a556134534545ab47c6c81c14f06c0b8sdfsdf');
 define('OAUTH_CLIENT_ID', '2212711849319225');

@@ -270,7 +270,7 @@ angular.module('getlancerApp.Bidding')
             // if (checkFileFormat(file, FileFormat.project)) {
             // $scope.is_image_error = false;
             Upload.upload({
-                url: '/api/v1/attachments?class=Project',
+                url: 'http://localhost:8080/api/v1/attachments?class=Project',
                 data: {
                     file: file,
                 }
@@ -632,7 +632,7 @@ angular.module('getlancerApp.Bidding')
         /*project edit attachment Function */
         $scope.upload = function (file) {
             Upload.upload({
-                url: '/api/v1/attachments?class=Project',
+                url: 'http://localhost:8080/api/v1/attachments?class=Project',
                 data: {
                     file: file,
                 }

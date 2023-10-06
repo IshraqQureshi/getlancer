@@ -8,7 +8,7 @@
  */
 angular.module('getlancerApp')
     .factory('usersAddresses', ['$resource', function($resource) {
-        return $resource('/api/v1/users/:user_id/user_addresses', {}, {
+        return $resource('http://localhost:8080/api/v1/users/:user_id/user_addresses', {}, {
             create: {
                 method: 'POST',
                 params: {

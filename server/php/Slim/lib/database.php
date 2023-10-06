@@ -18,12 +18,12 @@ use Illuminate\Container\Container;
 
 $capsule = new Capsule;
 $capsule->addConnection(array(
-    'driver' => R_DB_DRIVER,
-    'host' => R_DB_HOST,
-    'database' => R_DB_NAME,
-    'username' => R_DB_USER,
-    'password' => R_DB_PASSWORD,
-    'port' => R_DB_PORT,
+    'driver' => "pgsql",
+    'host' => "localhost",
+    'database' => "legal_tech_bidding",
+    'username' => "postgres",
+    'password' => "admin123",
+    'port' => "5432",
     'charset' => 'utf8',
     'collation' => 'utf8_general_ci',
     'prefix' => ''

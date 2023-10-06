@@ -21,7 +21,7 @@ angular.module('base')
                 }
                 $http({
                         method: 'POST',
-                        url: '/api/v1/users/login',
+                        url: 'http://localhost:8080/api/v1/users/login',
                         data: $scope.user
                     })
                     .success(function(response) {

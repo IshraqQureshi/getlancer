@@ -8,7 +8,7 @@
  */
 angular.module('getlancerApp')
     .factory('userActivation', ['$resource', function($resource) {
-        return $resource('/api/v1/users/activation/:user_id/:hash', {}, {
+        return $resource('http://localhost:8080/api/v1/users/activation/:user_id/:hash', {}, {
             activation: {
                 method: 'PUT',
                 params: {

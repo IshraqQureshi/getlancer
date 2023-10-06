@@ -8,7 +8,7 @@
  */
 angular.module('getlancerApp')
     .factory('states', ['$resource', function($resource) {
-        return $resource('/api/v1/states', {}, {
+        return $resource('http://localhost:8080/api/v1/states', {}, {
             get: {
                 method: 'GET'
             }

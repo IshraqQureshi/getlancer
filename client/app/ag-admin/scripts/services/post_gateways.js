@@ -8,7 +8,7 @@
  */
 angular.module('base')
     .factory('postGateways', ['$resource', function($resource) {
-        return $resource('/api/v1/post_gateways', {}, {
+        return $resource('http://localhost:8080/api/v1/post_gateways', {}, {
             save: {
                 method: 'POST'
             }

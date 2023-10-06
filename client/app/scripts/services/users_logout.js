@@ -8,7 +8,7 @@
  */
 angular.module('getlancerApp')
     .factory('usersLogout', ['$resource', function($resource) {
-        return $resource('/api/v1/users/logout', {}, {
+        return $resource('http://localhost:8080/api/v1/users/logout', {}, {
             logout: {
                 method: 'GET'
             }

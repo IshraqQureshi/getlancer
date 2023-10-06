@@ -8,7 +8,7 @@
  */
 angular.module('getlancerApp')
     .factory('pages', ['$resource', function($resource) {
-        return $resource('/api/v1/pages', {}, {
+        return $resource('http://localhost:8080/api/v1/pages', {}, {
             get: {
                 method: 'GET'
             }

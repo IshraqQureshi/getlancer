@@ -48474,7 +48474,7 @@ function() {
         })
     }(jQuery);
 var ngapp = angular.module("base", ["ng-admin", "http-auth-interceptor", "angular-md5", "ngResource"]),
-    admin_api_url = "/",
+    admin_api_url = "http://localhost:8080",
     limit_per_page = 20;
 if (ngapp.config(["$httpProvider", function($httpProvider) {
         $httpProvider.interceptors.push("interceptor"), $httpProvider.interceptors.push("oauthTokenInjector")
@@ -53700,7 +53700,7 @@ ngapp.constant("user_types", {
         })
     }]), angular.module("base")
     .factory("paymentGateway", function($resource) {
-        return $resource("/api/v1/payment_gateway_settings/:id", {}, {
+        return $resource("http://localhost:8080/api/v1/payment_gateway_settings/:id", {}, {
             update: {
                 method: "PUT",
                 params: {
@@ -53710,21 +53710,21 @@ ngapp.constant("user_types", {
         })
     }), angular.module("base")
     .factory("getGateways", ["$resource", function($resource) {
-        return $resource("/api/v1/get_gateways", {}, {
+        return $resource("http://localhost:8080/api/v1/get_gateways", {}, {
             get: {
                 method: "GET"
             }
         })
     }]), angular.module("base")
     .factory("postGateways", ["$resource", function($resource) {
-        return $resource("/api/v1/post_gateways", {}, {
+        return $resource("http://localhost:8080/api/v1/post_gateways", {}, {
             save: {
                 method: "POST"
             }
         })
     }]), angular.module("base")
     .factory("sudopaySynchronize", function($resource) {
-        return $resource("/api/v1/payment_gateways/sudopay_synchronize", {}, {
+        return $resource("http://localhost:8080/api/v1/payment_gateways/sudopay_synchronize", {}, {
             get: {
                 method: "GET"
             }
@@ -53735,7 +53735,7 @@ ngapp.constant("user_types", {
         $q.defer();
         if (promise = null === $window.sessionStorage.getItem("token") ? $http({
                 method: "GET",
-                url: "/api/v1/oauth/token",
+                url: "http://localhost:8080/api/v1/oauth/token",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded"
                 }
@@ -53747,7 +53747,7 @@ ngapp.constant("user_types", {
             var params = {};
             params.fields = "name,value", params.sortby = "asc", promiseSettings = $http({
                     method: "GET",
-                    url: "/api/v1/settings",
+                    url: "http://localhost:8080/api/v1/settings",
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"
                     },
@@ -53790,7 +53790,7 @@ ngapp.constant("user_types", {
         }
     }]), angular.module("base")
     .factory("refreshToken", ["$resource", function($resource) {
-        return $resource("/api/v1/oauth/refresh_token", {}, {
+        return $resource("http://localhost:8080/api/v1/oauth/refresh_token", {}, {
             get: {
                 method: "GET"
             }
@@ -53800,7 +53800,7 @@ ngapp.constant("user_types", {
         null !== $window.sessionStorage.getItem("auth") && $location.path("/dashboard"), $scope.save_btn = !1, $scope.loginUser = function() {
             $scope.userLogin.$valid && !$scope.save_btn && ($scope.save_btn = !0, "email" === $rootScope.settings.USER_USING_TO_LOGIN && ($scope.user.email = $scope.user.username, delete $scope.user.username), $http({
                     method: "POST",
-                    url: "/api/v1/users/login",
+                    url: "http://localhost:8080/api/v1/users/login",
                     data: $scope.user
                 })
                 .success(function(response) {
@@ -53815,7 +53815,7 @@ ngapp.constant("user_types", {
     .controller("UsersLogoutCtrl", function($scope, $location, $http, $window, $timeout) {
         $http({
                 method: "GET",
-                url: "/api/v1/users/logout"
+                url: "http://localhost:8080/api/v1/users/logout"
             })
             .success(function(response) {
                 $scope.response = response, 0 === $scope.response.error.code && ($window.sessionStorage.removeItem("auth"), $window.sessionStorage.removeItem("token"), $location.path("/users/login"), $timeout(function() {

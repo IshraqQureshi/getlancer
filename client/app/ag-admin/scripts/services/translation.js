@@ -8,7 +8,7 @@
  */
 angular.module('base')
     .factory('TranslationsFactory', function($resource) {
-        return $resource('/api/v1/translations', {}, {
+        return $resource('http://localhost:8080/api/v1/translations', {}, {
             get: {
                 method: 'GET',
                 params: {
@@ -21,14 +21,14 @@ angular.module('base')
         });
     })
     .factory('TranslationFactory', function($resource) {
-        return $resource('/api/v1/translations/:lang_code', {}, {
+        return $resource('http://localhost:8080/api/v1/translations/:lang_code', {}, {
             put: {
                 method: 'Put'
             }
         });
     })
     .factory('LanguageFactory', function($resource) {
-        return $resource('/api/v1/languages', {}, {
+        return $resource('http://localhost:8080/api/v1/languages', {}, {
             get: {
                 method: 'GET'
             }

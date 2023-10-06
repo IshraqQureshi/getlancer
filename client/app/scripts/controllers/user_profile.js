@@ -479,8 +479,8 @@ angular.module('getlancerApp')
                         $scope.save_btn = false;
                         $scope.experience = response.data;                 
                         var from_month_split = response.data.from_month_year.split('-');
-                        if(response.data.currently_working == true){
-                            response.data.currently_working == "t";
+                        if(response.data.currently_working === true){
+                            response.data.currently_working === "t";
                         } 
                         if(response.data.to_month_year){
                            var to_month_split = response.data.to_month_year.split('-');
@@ -503,10 +503,7 @@ angular.module('getlancerApp')
             params.company = $scope.experience.company;
             params.description = $scope.experience.description;
             params.from_month_year = $scope.experience.from_month_year + '-' + $scope.experience.Start_year;
-            if ($scope.check === true) {
-                var date = new Date();
-                var Currentyear = date.getFullYear();
-                var CurrentMonth = date.getMonth() + 1;
+            if ($scope.check === true) {            
                 params.to_month_year = null;
                 params.currently_working = true;
             } else {
@@ -574,7 +571,7 @@ angular.module('getlancerApp')
                 $scope.showCer = true;
             }else if(type === 'publication')
             {
-                $scope.showPub = true
+                $scope.showPub = true;
             }
             
         };
@@ -919,7 +916,7 @@ angular.module('getlancerApp')
         //Upload user avatar
         $scope.uploadUserImage = function(file) {
             Upload.upload({
-                    url: '/api/v1/attachments?class=UserAvatar',
+                    url: 'http://localhost:8080/api/v1/attachments?class=UserAvatar',
                     data: {
                         file: file
                     }

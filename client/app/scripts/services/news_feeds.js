@@ -8,21 +8,21 @@
  */
 angular.module('getlancerApp')
     .factory('NewsFeedsFactory', ['$resource', function ($resource) {
-		return $resource('/api/v1/activities', {}, {
+		return $resource('http://localhost:8080/api/v1/activities', {}, {
             get: {
                 method: 'GET'
             }
         });
 	}])
     .factory('MeNewsFeedsFactory', ['$resource', function ($resource) {
-		return $resource('/api/v1/me/activities', {}, {
+		return $resource('http://localhost:8080/api/v1/me/activities', {}, {
             get: {
                 method: 'GET'
             }
         });
 	}])
      .factory('MilestoneStatues', ['$resource', function($resource) {
-        return $resource('/api/v1/milestones/:id/update_status', {
+        return $resource('http://localhost:8080/api/v1/milestones/:id/update_status', {
             id: '@id'
         }, {
             put: {
@@ -31,7 +31,7 @@ angular.module('getlancerApp')
         });
   }])
   .factory('UpdateProjectStatues', ['$resource', function($resource) {
-        return $resource('/api/v1/projects/:id/update_status', {
+        return $resource('http://localhost:8080/api/v1/projects/:id/update_status', {
             id: '@id'
         }, {
             put: {
@@ -41,7 +41,7 @@ angular.module('getlancerApp')
         });
   }])
    .factory('UpdateBidsStatus', ['$resource', function($resource) {
-        return $resource('/api/v1/bids/:id/update_status', {
+        return $resource('http://localhost:8080/api/v1/bids/:id/update_status', {
             id: '@id'
         }, {
             put: {
@@ -50,14 +50,14 @@ angular.module('getlancerApp')
         });
   }])
   .factory('ExamsUsers', ['$resource', function($resource) {
-        return $resource('/api/v1/exams_users', {}, {
+        return $resource('http://localhost:8080/api/v1/exams_users', {}, {
             getall: {
                 method: 'GET'
             }
         });
 }])
 .factory('PaymentOrderFactory', ['$resource', function($resource) {
-        return $resource('/api/v1/order', {}, {
+        return $resource('http://localhost:8080/api/v1/order', {}, {
            create: {
                 method: 'POST'
             }

@@ -8,7 +8,7 @@
  */
 angular.module('base')
     .factory('zazpaySynchronize', function($resource) {
-        return $resource('/api/v1/payment_gateways/zazpay_synchronize', {}, {
+        return $resource('http://localhost:8080/api/v1/payment_gateways/zazpay_synchronize', {}, {
             get: {
                 method: 'GET'
             }

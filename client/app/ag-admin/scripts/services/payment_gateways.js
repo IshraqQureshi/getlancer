@@ -8,7 +8,7 @@
  */
 angular.module('base')
     .factory('paymentGateway', function($resource) {
-        return $resource('/api/v1/payment_gateway_settings/:id', {}, {
+        return $resource('http://localhost:8080/api/v1/payment_gateway_settings/:id', {}, {
             update: {
                 method: 'PUT',
                 params: {
@@ -18,14 +18,14 @@ angular.module('base')
         });
     })
     .factory('ExamListsFactory', function($resource) {
-        return $resource('/api/v1/exams', {'limit': 'all'}, {
+        return $resource('http://localhost:8080/api/v1/exams', {'limit': 'all'}, {
             get: {
                 method: 'GET',
             }
         });
     })
     .factory('ExamQuestions', function($resource) {
-        return $resource('/api/v1/exams_questions', {}, {
+        return $resource('http://localhost:8080/api/v1/exams_questions', {}, {
             post: {
                 method: 'POST',
             }

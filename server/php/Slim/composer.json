@@ -1,9 +1,9 @@
 {
-	"name": "Base",
-	"description": "Base",
+	"name": "legaltect/getlancer",
+	"description": "legaltect/getlancer",
 	"keywords": [
-		"Base",
-		"slim"
+		"Legal Tech",
+		"Getlancer"
 	],
 	"type": "project",
 	"minimum-stability": "RC",
@@ -23,6 +23,10 @@
 		"psr-4": {
 			"Models\\": "lib/Models/"
 		}
+	},
+	"config": {
+		"allow-plugins": {
+			"kylekatarnls/update-helper": true
+		}
 	}
-
 }

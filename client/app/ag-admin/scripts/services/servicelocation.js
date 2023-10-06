@@ -8,7 +8,7 @@
  */
 angular.module('base')
     .factory('ServiceLocation', function($resource) {
-        return $resource('/api/v1/settings/:id', {}, {
+        return $resource('http://localhost:8080/api/v1/settings/:id', {}, {
             get: {
                 method: 'GET',
                 params: {
@@ -24,14 +24,14 @@ angular.module('base')
         });
     })
 	.factory('CitiesFactory', function($resource) {
-        return $resource('/api/v1/cities?limit=all', {}, {
+        return $resource('http://localhost:8080/api/v1/cities?limit=all', {}, {
             get: {
                 method: 'GET',
             }
         });
     })
 	.factory('CountriesFactory', function($resource) {
-        return $resource('/api/v1/countries?limit=all', {}, {
+        return $resource('http://localhost:8080/api/v1/countries?limit=all', {}, {
             get: {
                 method: 'GET',
             }

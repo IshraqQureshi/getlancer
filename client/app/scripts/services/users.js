@@ -8,21 +8,21 @@
  */
 angular.module('getlancerApp')
     .factory('UsersFactory', ['$resource', function($resource) {
-        return $resource('/api/v1/users', {}, {
+        return $resource('http://localhost:8080/api/v1/users', {}, {
             get: {
                 method: 'GET'
             }
         });
   }])
     .factory('myUserFactory', ['$resource', function($resource) {
-        return $resource('/api/v1/me', {}, {
+        return $resource('http://localhost:8080/api/v1/me', {}, {
             get: {
                 method: 'GET'
             }
         });
     }])
     .factory('FreelancerSkills', ['$resource', function($resource) {
-        return $resource('/api/v1/skills', {}, {
+        return $resource('http://localhost:8080/api/v1/skills', {}, {
             get: {
                 method: 'GET'
             }

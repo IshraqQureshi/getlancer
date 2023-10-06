@@ -444,7 +444,7 @@ angular.module('getlancerApp')
         $scope.index();
     }]);
 angular.module('getlancerApp')
-    .controller('ModalLoginInstanceController', function($scope, $uibModalStack, tabactive, $location) {
+    .controller('ModalLoginInstanceController', function($scope, $uibModalStack, tabactive) {
         if (tabactive === 'login') {
             $scope.loginactive = 0;
         } else {

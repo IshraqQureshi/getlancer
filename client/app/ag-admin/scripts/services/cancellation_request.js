@@ -8,7 +8,7 @@
  */
 angular.module('base')
     .factory('ContestFactory', ['$resource', function($resource) {
-        return $resource('/api/v1/contests/:id', {}, {
+        return $resource('http://localhost:8080/api/v1/contests/:id', {}, {
             get: {
                 method: 'GET',
                 params: {

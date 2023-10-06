@@ -8,7 +8,7 @@
  */
 angular.module('getlancerApp')
     .factory('userSettings', ['$resource', function($resource) {
-        return $resource('/api/v1/users/:id', {}, {
+        return $resource('http://localhost:8080/api/v1/users/:id', {}, {
             update: {
                 method: 'PUT',
                 params: {
@@ -24,7 +24,7 @@ angular.module('getlancerApp')
         });
     }])
     .factory('UserMeFactory', ['$resource', function($resource) {
-        return $resource('/api/v1/me', {}, {
+        return $resource('http://localhost:8080/api/v1/me', {}, {
             get: {
                 method: 'GET'
             }

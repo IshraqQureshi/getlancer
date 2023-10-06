@@ -8,7 +8,7 @@
  */
 angular.module('getlancerApp.Common.UserFollow')
     .factory('FollowersFactory', ['$resource', function($resource) {
-        return $resource('/api/v1/followers', {}, {
+        return $resource('http://localhost:8080/api/v1/followers', {}, {
               get: {
                   method: 'GET'
               },
@@ -18,7 +18,7 @@ angular.module('getlancerApp.Common.UserFollow')
        })
   }])
     .factory('UnfollowFactory', ['$resource', function($resource) {
-        return $resource('/api/v1/followers/:followerId', {}, {
+        return $resource('http://localhost:8080/api/v1/followers/:followerId', {}, {
               remove: {
                   method: 'DELETE',
                   params: {

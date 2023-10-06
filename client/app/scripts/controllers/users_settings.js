@@ -122,7 +122,7 @@ angular.module('getlancerApp')
             angular.element('#custom-upload')
                 .val(file.name);
             Upload.upload({
-                url: '/api/v1/attachments?class=UserAvatar',
+                url: 'http://localhost:8080/api/v1/attachments?class=UserAvatar',
                 data: {
                     file: file
                 }

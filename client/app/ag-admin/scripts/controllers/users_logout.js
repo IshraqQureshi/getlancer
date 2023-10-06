@@ -10,7 +10,7 @@ angular.module('base')
     .controller('UsersLogoutCtrl', function($scope, $location, $http, $window, adminTokenService, $q, $cookies) {
         $http({
                 method: 'GET',
-                url: '/api/v1/users/logout'
+                url: 'http://localhost:8080/api/v1/users/logout'
             })
             .success(function(response) {
                 $scope.response = response;

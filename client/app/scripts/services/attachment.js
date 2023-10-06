@@ -8,7 +8,7 @@
  */
 angular.module('getlancerApp')
     .factory('attachment', ['$resource', function($resource) {
-        return $resource('/api/v1/attachments/', {}, {
+        return $resource('http://localhost:8080/api/v1/attachments/', {}, {
             create: {
                 method: 'POST'
             }

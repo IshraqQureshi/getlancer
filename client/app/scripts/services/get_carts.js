@@ -8,7 +8,7 @@
  */
 angular.module('getlancerApp')
     .factory('getCarts', ['$resource', function($resource) {
-        return $resource('/api/v1/users/:user_id/carts/:cookie_id', {}, {
+        return $resource('http://localhost:8080/api/v1/users/:user_id/carts/:cookie_id', {}, {
             get: {
                 method: 'GET',
                 params: {

@@ -1,7 +1,7 @@
 'use strict';
 angular.module('getlancerApp.Bidding.BiddingReview')
     .factory('BiddingReviews', ['$resource', function($resource) {
-        return $resource('/api/v1/reviews', {}, {
+        return $resource('http://localhost:8080/api/v1/reviews', {}, {
             get: {
                 method: 'GET',
             },
@@ -11,7 +11,7 @@ angular.module('getlancerApp.Bidding.BiddingReview')
         });
   }])
     .factory('BiddingReview', ['$resource', function($resource) {
-        return $resource('/api/v1/reviews/:id', {}, {
+        return $resource('http://localhost:8080/api/v1/reviews/:id', {}, {
             get: {
                 method: 'GET',
                 params: {

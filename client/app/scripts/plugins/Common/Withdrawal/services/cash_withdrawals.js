@@ -8,7 +8,7 @@
  */
 angular.module('getlancerApp.Common.Withdrawal')
     .factory('cashWithdrawals', ['$resource', function($resource) {
-        return $resource('/api/v1/users/:user_id/user_cash_withdrawals', {}, {
+        return $resource('http://localhost:8080/api/v1/users/:user_id/user_cash_withdrawals', {}, {
             get: {
                 method: 'GET',
                 params: {
